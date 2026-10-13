@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="dbmanage 浏览器标签图标的二十七个候选，包含 Codex 几何海洋系列、鎏金航海罗盘、精铸金币与BOKE趋势金币，可试戴真实 16px 标签图标并下载整套文件。">
+<meta name="description" content="dbmanage 浏览器标签图标的三十个候选，包含 Codex 几何海洋系列、鎏金航海罗盘、精铸金币与BOKE趋势金币，可试戴真实 16px 标签图标并下载整套文件。">
 <title>dbmanage 图标候选</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -127,7 +127,7 @@ pre { margin: 10px 0 0; padding: 12px 14px; background: var(--surface); border: 
   <p class="eyebrow mono">dbmanage · 浏览器标签图标 · 第四版</p>
   <h1>dbmanage 图标候选</h1>
   <p class="lede">从 <b>BOKE 自己的世界</b>出发找故事：捕鱼、斗地主、麻将、金币；公司名「波克城市」里的波和城；
-    数据分析里本来就长得像动物的图（鱼骨图、雷达图）；再加上这个平台本身的样子。现在一共二十七个，新加左上折线、右下金币的 BOKE 趋势金币；从大图到真实 16px，直接比较缩小后的轮廓。</p>
+    数据分析里本来就长得像动物的图（鱼骨图、雷达图）；再加上这个平台本身的样子。现在一共三十个，最上面是 Claude 画的三个趋势金币（左上折线、右下金币、币面印 B）；从大图到真实 16px，直接比较缩小后的轮廓。</p>
 </header>
 
 <section class="wrap" aria-labelledby="try-h">
@@ -143,6 +143,12 @@ pre { margin: 10px 0 0; padding: 12px 14px; background: var(--surface); border: 
       <div class="strip b"><div class="tabs" id="strip-b"></div></div>
     </div>
   </div>
+</section>
+
+<section class="wrap" id="claude-coins" aria-labelledby="claude-h">
+  <h2 id="claude-h">趋势金币 · Claude 画的三个版本</h2>
+  <p class="sub">左上角上升折线，右下角一摞金币，币面浮雕 BOKE 的胖 B（两个圆孔取自 logo）。前两个红底，第三个换成顶栏的藏蓝。</p>
+  <div class="grid" id="grid-claude"></div>
 </section>
 
 <section class="wrap codex-series" id="codex" aria-labelledby="codex-h">
@@ -178,6 +184,7 @@ pre { margin: 10px 0 0; padding: 12px 14px; background: var(--surface); border: 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script src="minted-coins.js?v=20261013-boke-trend"></script>
 <script src="codex-icons.js?v=20261013-boke-trend"></script>
+<script src="claude-coins.js?v=20261013-trend-coin"></script>
 <script>
 (function () {
   const NAVY = '#0A1463', PINK = '#EF7680', WHITE = '#FFFFFF', GOLD = '#FFC24B', MINT = '#7FD3C4';
@@ -461,7 +468,9 @@ pre { margin: 10px 0 0; padding: 12px 14px; background: var(--surface); border: 
   NEW.forEach((icon, i) => { icon.no = ICONS.length + i + 1; });
   const CODEX = window.CODEX_ICONS;
   CODEX.forEach((icon, i) => { icon.no = ICONS.length + NEW.length + i + 1; });
-  const ALL = CODEX.concat(NEW, ICONS);
+  const CLAUDE = window.CLAUDE_ICONS || [];
+  CLAUDE.forEach((icon, i) => { icon.no = ICONS.length + NEW.length + CODEX.length + i + 1; });
+  const ALL = CLAUDE.concat(CODEX, NEW, ICONS);
   let picked = ALL.find((i) => i.id === store.get('icon.picked2')) || NEW[0];
 
   // 单独打开这一页时（不在 claude.ai 里），标签页自己的图标就换成当前试戴的那个
@@ -609,6 +618,7 @@ pre { margin: 10px 0 0; padding: 12px 14px; background: var(--surface); border: 
     });
   }
 
+  $('grid-claude').innerHTML = CLAUDE.map(card).join('');
   $('grid-codex').innerHTML = CODEX.map(card).join('');
   $('grid2').innerHTML = NEW.map(card).join('');
   $('grid').innerHTML = ICONS.map(card).join('');
@@ -617,6 +627,7 @@ pre { margin: 10px 0 0; padding: 12px 14px; background: var(--surface); border: 
   wire($('grid2'));
   wire($('grid'));
   wire($('grid-codex'));
+  wire($('grid-claude'));
   // 在 claude.ai 里走查看器的保存能力（拿不到就只留「复制 SVG」）；单独打开时用浏览器自己的下载
   const browserSave = {
     save({ filename, data }) {
