@@ -64,11 +64,14 @@ window.CLAUDE_ICONS = (() => {
     const s2 = (R * 1.2) / 15.8;
     const relief = '#E8CB87';
     const bAt = (k) => `translate(${f(-5.1 * k)} ${f(-7.9 * k)}) scale(${f(k)})`;
-    // 底部弧形字：基线在 0.8R 的下半圆上，字头朝圆心；单独用错位的暗影和亮边做浮雕，不过模糊滤镜，小字才清楚
-    const arc = `M${f(-R * 0.8)} 0A${f(R * 0.8)} ${f(R * 0.8)} 0 0 0 ${f(R * 0.8)} 0`;
-    const word = (dx, dy, fill, op) => `<text transform="translate(${dx} ${dy})" font-family="Georgia, 'Times New Roman', serif" font-weight="400" ` +
-      `font-size="${f(R * 0.22)}" letter-spacing="${f(R * 0.07)}" fill="${fill}" fill-opacity="${op}" text-anchor="middle">` +
-      `<textPath href="#${id}t" startOffset="50%">BOKE</textPath></text>`;
+    // 底部环形字：四个字母逐个摆在 0.82R 的圆上，每隔 20° 一个（120°→60°，y 向下时 90° 是正下方），
+    // 每个字母转到字头朝圆心，弧度才看得出来；单独用错位的暗影和亮边做浮雕，不过模糊滤镜，小字才清楚
+    const word = (dx, dy, fill, op) => `<g transform="translate(${dx} ${dy})" font-family="Georgia, 'Times New Roman', serif" font-weight="400" ` +
+      `font-size="${f(R * 0.22)}" fill="${fill}" fill-opacity="${op}" text-anchor="middle">` +
+      ['B', 'O', 'K', 'E'].map((ch, i) => {
+        const deg = 120 - i * 20, rad = (deg * Math.PI) / 180;
+        return `<text transform="translate(${f(Math.cos(rad) * R * 0.82)} ${f(Math.sin(rad) * R * 0.82)}) rotate(${deg - 90})">${ch}</text>`;
+      }).join('') + '</g>';
     return `<circle r="${R}" fill="#8A6A2C"/>` +
       `<clipPath id="${id}"><circle r="${f(R * 0.985)}"/></clipPath>` +
       `<g clip-path="url(#${id})"><circle r="${R}" fill="url(#face)"/>` +
@@ -83,7 +86,7 @@ window.CLAUDE_ICONS = (() => {
       (o.text ? `<circle cx="${f(-R * 0.76)}" cy="${f(-R * 0.08)}" r="${f(R * 0.035)}" fill="${relief}"/><circle cx="${f(R * 0.76)}" cy="${f(-R * 0.08)}" r="${f(R * 0.035)}" fill="${relief}"/>` +
         `<path d="M0 ${f(-R * 0.79)}l${f(R * 0.035)} ${f(R * 0.07)} ${f(R * 0.075)} 0 -${f(R * 0.06)} ${f(R * 0.045)} ${f(R * 0.025)} ${f(R * 0.075)} -${f(R * 0.075)} -${f(R * 0.045)} -${f(R * 0.075)} ${f(R * 0.045)} ${f(R * 0.025)} -${f(R * 0.075)} -${f(R * 0.06)} -${f(R * 0.045)} ${f(R * 0.075)} 0Z" fill="${relief}"/>` : '') +
       '</g></g>' +
-      (o.text ? `<g class="fine"><path id="${id}t" d="${arc}" fill="none"/>` + word(f(R * 0.02), f(R * 0.025), '#4E3812', 0.75) +
+      (o.text ? '<g class="fine">' + word(f(R * 0.02), f(R * 0.025), '#4E3812', 0.75) +
         word(f(-R * 0.014), f(-R * 0.014), '#FFF3CF', 0.9) + word(0, 0, '#EBD08E', 1) + '</g>' +
         // 标签栏尺寸（≤48px）只显示这个：更大、更亮、硬投影的 B，细节全部收起
         `<g class="small" transform="${bAt(s2)}"><use href="#bb" transform="translate(.7 .85)" fill="#2E1F06" opacity=".6"/>` +
