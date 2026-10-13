@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="dbmanage 浏览器标签图标的二十五个候选，包含 Codex 几何海洋系列与鎏金航海罗盘，可试戴真实 16px 标签图标并下载整套文件。">
+<meta name="description" content="dbmanage 浏览器标签图标的二十六个候选，包含 Codex 几何海洋系列、鎏金航海罗盘与精铸金币，可试戴真实 16px 标签图标并下载整套文件。">
 <title>dbmanage 图标候选</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -127,7 +127,7 @@ pre { margin: 10px 0 0; padding: 12px 14px; background: var(--surface); border: 
   <p class="eyebrow mono">dbmanage · 浏览器标签图标 · 第四版</p>
   <h1>dbmanage 图标候选</h1>
   <p class="lede">从 <b>BOKE 自己的世界</b>出发找故事：捕鱼、斗地主、麻将、金币；公司名「波克城市」里的波和城；
-    数据分析里本来就长得像动物的图（鱼骨图、雷达图）；再加上这个平台本身的样子。现在一共二十五个，包含 Codex 几何海洋系列和新加的精致航海罗盘；从大图到真实 16px，直接比较缩小后的轮廓。</p>
+    数据分析里本来就长得像动物的图（鱼骨图、雷达图）；再加上这个平台本身的样子。现在一共二十六个，包含 Codex 几何海洋系列、精致航海罗盘与新细化的金币图标；从大图到真实 16px，直接比较缩小后的轮廓。</p>
 </header>
 
 <section class="wrap" aria-labelledby="try-h">
@@ -146,8 +146,8 @@ pre { margin: 10px 0 0; padding: 12px 14px; background: var(--surface); border: 
 </section>
 
 <section class="wrap codex-series" id="codex" aria-labelledby="codex-h">
-  <h2 id="codex-h">Codex · 几何海洋与航海罗盘</h2>
-  <p class="sub">六款几何图标统一采用朱红、米白与暖金；精致航海罗盘保留蓝金配色。用粗线条和留白做标记，让小图标先有清楚的轮廓，再讲故事。点击样张可试戴，支持复制 SVG 和下载整套。</p>
+  <h2 id="codex-h">Codex · 几何海洋、航海罗盘与精铸金币</h2>
+  <p class="sub">六款几何图标与新细化的金币采用红色主题；精致航海罗盘保留蓝金配色。金币另保留深蓝版，位于下方的「金币柱状图」。点击样张可试戴，支持复制 SVG 和下载整套。</p>
   <div class="grid" id="grid-codex"></div>
 </section>
 
@@ -176,7 +176,8 @@ pre { margin: 10px 0 0; padding: 12px 14px; background: var(--surface); border: 
 </section>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="codex-icons.js?v=20261013-red"></script>
+<script src="minted-coins.js?v=20261013-gold"></script>
+<script src="codex-icons.js?v=20261013-gold"></script>
 <script>
 (function () {
   const NAVY = '#0A1463', PINK = '#EF7680', WHITE = '#FFFFFF', GOLD = '#FFC24B', MINT = '#7FD3C4';
@@ -187,17 +188,6 @@ pre { margin: 10px 0 0; padding: 12px 14px; background: var(--surface); border: 
     return '<path d="M' + cx + ' ' + (cy - r) + 'Q' + (cx + k) + ' ' + (cy - k) + ' ' + (cx + r) + ' ' + cy + 'Q' + (cx + k) + ' ' + (cy + k) + ' ' + cx + ' ' + (cy + r) +
       'Q' + (cx - k) + ' ' + (cy + k) + ' ' + (cx - r) + ' ' + cy + 'Q' + (cx - k) + ' ' + (cy - k) + ' ' + cx + ' ' + (cy - r) + 'Z" fill="' + fill + '"/>';
   };
-  // 一摞金币：从下往上叠 n 枚
-  const coins = (x, n) => {
-    let s = '';
-    for (let k = 0; k < n; k++) {
-      const y = 49 - k * 5.2;
-      s += '<path d="M' + (x - 7) + ' ' + y + 'v3.6a7 2.8 0 0 0 14 0V' + y + 'Z" fill="#D9930F"/>' +
-        '<ellipse cx="' + x + '" cy="' + y + '" rx="7" ry="2.8" fill="#FFD45C" stroke="#B9780A" stroke-width=".9"/>';
-    }
-    return s;
-  };
-
   // 等轴魔方：三个面各 3×3，格子之间留缝
   const cube = () => {
     const T = [32, 7], TL = [9, 20.25], TR = [55, 20.25], C = [32, 33.5], BL = [9, 46.25], B = [32, 59.5];
@@ -387,11 +377,9 @@ pre { margin: 10px 0 0; padding: 12px 14px; background: var(--surface); border: 
         '<circle cx="34" cy="32" r="4.4" fill="' + WHITE + '"/><circle cx="32.8" cy="31.2" r="2.1" fill="#050A2E"/>' +
         '<path d="M31 26C29 15 23 11 17 14.5" fill="none" stroke="#9FB0FF" stroke-width="2.4" stroke-linecap="round"/>' +
         '<circle cx="16" cy="15" r="4.6" fill="#FFD45C"/><circle cx="14.6" cy="13.6" r="1.4" fill="' + WHITE + '"/>' },
-    { id: 'coin-bars', name: '金币柱状图', glow: '#FFC24B',
-      story: '捕鱼游戏里最熟悉的金币，摞成三摞，就是一张往上走的柱状图。',
-      defs: '<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#16308F"/><stop offset="1" stop-color="#0A1463"/></linearGradient>',
-      bg: 'url(#bg)',
-      body: '<ellipse cx="32" cy="56" rx="25" ry="2.6" fill="#000000" opacity=".25"/>' + coins(15, 2) + coins(32, 4) + coins(49, 7) + star(49, 8.5, 4.6, WHITE) },
+    { id: 'coin-bars', name: '金币柱状图', badge: '精致深蓝版',
+      story: '三摞递增金币保留原来的深蓝底。币面压印、边缘刻纹和分层高光已细化；可与上方的朱红版比较。',
+      ...window.mintedCoinIcon('blue') },
     { id: 'joker-pair', name: '数据王炸', glow: '#2BBF8A',
       story: '斗地主里最硬的一手是王炸。后面那张是王，前面那张的花色是一张柱状图。',
       defs: '<radialGradient id="bg" cx=".5" cy=".4" r=".8"><stop offset="0" stop-color="#17845F"/><stop offset="1" stop-color="#0B4A36"/></radialGradient>',
