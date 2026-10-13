@@ -33,15 +33,15 @@ window.CLAUDE_ICONS = (() => {
     // 黄铜金：侧面是圆柱反光，币面是左上偏亮的缎面
     '<linearGradient id="side" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5E4519"/><stop offset=".12" stop-color="#A8863F"/><stop offset=".22" stop-color="#F1D99A"/><stop offset=".3" stop-color="#C9A458"/><stop offset=".55" stop-color="#8E6C2E"/><stop offset=".76" stop-color="#D6B567"/><stop offset=".86" stop-color="#A9853C"/><stop offset="1" stop-color="#5E4519"/></linearGradient>' +
     '<linearGradient id="edge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E9CF8C"/><stop offset=".45" stop-color="#A9853C"/><stop offset="1" stop-color="#5E4519"/></linearGradient>' +
-    '<radialGradient id="face" cx=".34" cy=".28" r=".9"><stop offset="0" stop-color="#DDBE78"/><stop offset=".5" stop-color="#B08C46"/><stop offset="1" stop-color="#76571F"/></radialGradient>' +
-    '<linearGradient id="bright" x1="0" y1="0" x2=".4" y2="1"><stop offset="0" stop-color="#FFF8DC"/><stop offset="1" stop-color="#F1D184"/></linearGradient>' +
+    '<radialGradient id="face" cx=".34" cy=".28" r=".9"><stop offset="0" stop-color="#E2C681"/><stop offset=".5" stop-color="#BC9850"/><stop offset="1" stop-color="#82632A"/></radialGradient>' +
+    '<linearGradient id="bright" x1="0" y1="0" x2=".4" y2="1"><stop offset="0" stop-color="#FCECBC"/><stop offset="1" stop-color="#E6C377"/></linearGradient>' +
     // 小尺寸（标签栏 16/32px）收起细节、换成大号亮 B；大尺寸反过来
     '<style>.small{display:none}@media (max-width:48px){.fine{display:none}.small{display:inline}}</style>' +
     '<linearGradient id="sheen" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0"/><stop offset=".5" stop-color="#FFF8E4" stop-opacity=".22"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>' +
     // 缎面颗粒：分形噪声转成稀疏的暗斑
     '<filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="2.2" numOctaves="2" seed="7"/>' +
     '<feColorMatrix values="0 0 0 0 .25  0 0 0 0 .18  0 0 0 0 .06  0 0 0 -1.6 1.05"/><feComposite in2="SourceGraphic" operator="in"/></filter>' +
-    reliefFilter('relief', 1.8) + reliefFilter('relief-flat', 1.3) +
+    reliefFilter('relief', 1.5) + reliefFilter('relief-flat', 1.3) +
     '<filter id="soft" x="-40%" y="-120%" width="180%" height="340%"><feGaussianBlur stdDeviation="1.3"/></filter>' +
     '<filter id="tight" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation=".6"/></filter>' +
     `<path id="bb" fill-rule="evenodd" d="${BB}"/>`;
@@ -60,13 +60,13 @@ window.CLAUDE_ICONS = (() => {
   const coinFace = (R, opts) => {
     const o = opts || {};
     const id = 'cf' + (uid++);
-    const s = (R * 1.1) / 15.8;
-    const s2 = (R * 1.34) / 15.8;
-    const relief = '#F0D693';
+    const s = (R * 1.0) / 15.8;
+    const s2 = (R * 1.2) / 15.8;
+    const relief = '#E8CB87';
     const bAt = (k) => `translate(${f(-5.1 * k)} ${f(-7.9 * k)}) scale(${f(k)})`;
     // 底部弧形字：基线在 0.8R 的下半圆上，字头朝圆心；单独用错位的暗影和亮边做浮雕，不过模糊滤镜，小字才清楚
     const arc = `M${f(-R * 0.8)} 0A${f(R * 0.8)} ${f(R * 0.8)} 0 0 0 ${f(R * 0.8)} 0`;
-    const word = (dx, dy, fill, op) => `<text transform="translate(${dx} ${dy})" font-family="Georgia, 'Times New Roman', serif" font-weight="700" ` +
+    const word = (dx, dy, fill, op) => `<text transform="translate(${dx} ${dy})" font-family="Georgia, 'Times New Roman', serif" font-weight="400" ` +
       `font-size="${f(R * 0.22)}" letter-spacing="${f(R * 0.07)}" fill="${fill}" fill-opacity="${op}" text-anchor="middle">` +
       `<textPath href="#${id}t" startOffset="50%">BOKE</textPath></text>`;
     return `<circle r="${R}" fill="#8A6A2C"/>` +
@@ -75,7 +75,7 @@ window.CLAUDE_ICONS = (() => {
       `<rect class="fine" x="${-R}" y="${-R}" width="${2 * R}" height="${2 * R}" fill="#000" filter="url(#grain)" opacity=".55"/>` +
       `<rect x="${f(-R * 0.3)}" y="${-R}" width="${f(R * 0.55)}" height="${2 * R}" fill="url(#sheen)" transform="rotate(34)"/></g>` +
       // B 先在币面上投一道柔影，再和外沿、内圈一起过浮雕光照；亮金字配暗一档的币面，反差才够
-      `<g class="fine" transform="${bAt(s)}"><use href="#bb" transform="translate(.55 .7)" fill="#2E1F06" opacity=".5" filter="url(#tight)"/></g>` +
+      `<g class="fine" transform="${bAt(s)}"><use href="#bb" transform="translate(.45 .55)" fill="#2E1F06" opacity=".28" filter="url(#tight)"/></g>` +
       `<g filter="url(${o.flat ? '#relief-flat' : '#relief'})">` +
       `<circle r="${f(R * 0.94)}" fill="none" stroke="${relief}" stroke-width="${f(R * 0.09)}"/>` +
       `<g class="fine"><circle r="${f(R * 0.6)}" fill="none" stroke="${relief}" stroke-width="${f(R * 0.04)}"/>` +
@@ -86,7 +86,7 @@ window.CLAUDE_ICONS = (() => {
       (o.text ? `<g class="fine"><path id="${id}t" d="${arc}" fill="none"/>` + word(f(R * 0.02), f(R * 0.025), '#4E3812', 0.75) +
         word(f(-R * 0.014), f(-R * 0.014), '#FFF3CF', 0.9) + word(0, 0, '#EBD08E', 1) + '</g>' +
         // 标签栏尺寸（≤48px）只显示这个：更大、更亮、硬投影的 B，细节全部收起
-        `<g class="small" transform="${bAt(s2)}"><use href="#bb" transform="translate(.9 1.1)" fill="#2E1F06" opacity=".85"/>` +
+        `<g class="small" transform="${bAt(s2)}"><use href="#bb" transform="translate(.7 .85)" fill="#2E1F06" opacity=".6"/>` +
         '<use href="#bb" fill="url(#bright)"/></g>' : '');
   };
 
