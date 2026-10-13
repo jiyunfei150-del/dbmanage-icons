@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="dbmanage 浏览器标签图标的十八个正方形候选，放进真实 16px 标签栏对比，可下载整套图标文件。">
+<title>dbmanage 图标候选</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+SC:wght@700;900&display=swap">
+<style>
+/* Layout: 一张图标打样单——顶部是真实尺寸的浏览器标签栏试戴，下面九张海报式样张，每张一个小故事，再从大图一路缩到 16px 像素格 */
+:root {
+  --bg: #F3F4F8;
+  --surface: #FFFFFF;
+  --ink: #161A2E;
+  --muted: #5C6378;
+  --line: #DCDFE8;
+  --brand: #0A1463;
+  --brand-ink: #2A3BB0;
+  --ok: #18805A;
+  --tile: #E9EBF2;
+  --strip-a: #D3E3FD;
+  --strip-a-tab: #FFFFFF;
+  --strip-a-ink: #1F1F1F;
+  --strip-b: #1F2023;
+  --strip-b-tab: #35363A;
+  --strip-b-ink: #E8EAED;
+  --f-display: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+  --f-body: system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111320; --surface: #191C2B; --ink: #E7E9F2; --muted: #9AA0B6; --line: #2C3043;
+    --brand-ink: #9CA9FF; --ok: #4FC48F; --tile: #22263A;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111320; --surface: #191C2B; --ink: #E7E9F2; --muted: #9AA0B6; --line: #2C3043;
+  --brand-ink: #9CA9FF; --ok: #4FC48F; --tile: #22263A;
+  color-scheme: dark;
+}
+
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 14px; line-height: 1.65; }
+.wrap { max-width: 1180px; margin-inline: auto; padding-inline: 20px; }
+.mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+:focus-visible { outline: 2px solid var(--brand-ink); outline-offset: 2px; border-radius: 4px; }
+button { font: inherit; }
+
+header.wrap { padding-block: 40px 8px; display: grid; gap: 10px; }
+.eyebrow { margin: 0; font-size: 12px; letter-spacing: .05em; color: var(--muted); }
+h1 { margin: 0; font-family: var(--f-display); font-weight: 900; font-size: clamp(28px, 4.4vw, 40px); line-height: 1.2; letter-spacing: .02em; text-wrap: balance; }
+.lede { margin: 0; max-width: 70ch; color: var(--muted); }
+.lede b { color: var(--ink); }
+
+h2 { margin: 0 0 4px; font-family: var(--f-display); font-weight: 700; font-size: 20px; text-wrap: balance; }
+.sub { margin: 0 0 14px; color: var(--muted); font-size: 13px; }
+section.wrap { padding-block: 28px 0; }
+
+/* 标签栏试戴 */
+.try { display: grid; gap: 12px; }
+.strip { border-radius: 10px; padding: 8px 8px 0; overflow-x: auto; }
+.strip.a { background: var(--strip-a); color: var(--strip-a-ink); }
+.strip.b { background: var(--strip-b); color: var(--strip-b-ink); }
+.tabs { display: flex; align-items: flex-end; gap: 2px; min-width: max-content; }
+.tab { display: flex; align-items: center; gap: 8px; height: 34px; padding: 0 12px; border-radius: 8px 8px 0 0; font-size: 12px; white-space: nowrap; }
+.tab img { width: 16px; height: 16px; flex: none; display: block; }
+.tab.icon-only { padding: 0 9px; }
+.tab.icon-only + .tab.icon-only { box-shadow: -1px 0 0 color-mix(in srgb, currentColor 22%, transparent); }
+.strip.a .tab.on { background: var(--strip-a-tab); }
+.strip.b .tab.on { background: var(--strip-b-tab); }
+.tab .t { max-width: 150px; overflow: hidden; text-overflow: ellipsis; }
+.strip-label { display: flex; justify-content: space-between; gap: 12px; font-size: 12px; color: var(--muted); margin: 0 2px 6px; }
+.picked { font-weight: 600; color: var(--ink); }
+
+/* 样张 */
+.grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; padding-block: 4px 8px; }
+@media (min-width: 940px) {
+  .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .story { min-height: calc(1.65em * 3); }  /* 同一排的尺寸条对齐 */
+}
+.card { min-width: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; }
+.card[aria-current="true"] { border-color: var(--brand-ink); box-shadow: 0 0 0 1px var(--brand-ink); }
+.poster { position: relative; display: grid; place-items: center; height: 188px; border: 0; padding: 0; cursor: pointer; background:
+  radial-gradient(circle at 50% 46%, color-mix(in srgb, var(--glow) 34%, transparent), transparent 62%), var(--tile); }
+.poster img { width: 124px; height: 124px; display: block; filter: drop-shadow(0 10px 18px rgba(10, 20, 99, .28)); transition: transform .25s; }
+.poster:hover img { transform: translateY(-3px) rotate(-2deg); }
+.poster .no { position: absolute; left: 14px; top: 10px; font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+.inner { padding: 14px 16px 16px; display: grid; gap: 10px; flex: 1; align-content: start; }
+.name { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; font-family: var(--f-display); font-weight: 700; font-size: 19px; line-height: 1.3; }
+.badge { font-family: var(--f-body); font-size: 11px; font-weight: 600; color: var(--ok); border: 1px solid color-mix(in srgb, var(--ok) 50%, transparent); border-radius: 4px; padding: 0 6px; line-height: 1.6; }
+.story { margin: 0; color: var(--muted); font-size: 13.5px; }
+.ladder { display: flex; align-items: flex-end; gap: 12px; padding: 10px 12px; border-radius: 8px; background: var(--tile); overflow-x: auto; }
+.rung { display: grid; justify-items: center; gap: 4px; font-size: 11px; color: var(--muted); }
+.rung img, .rung canvas { display: block; }
+.rung canvas { width: 64px; height: 64px; image-rendering: pixelated; border-radius: 2px; outline: 1px dashed color-mix(in srgb, var(--muted) 45%, transparent); outline-offset: 2px; }
+.acts { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn { font-size: 13px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 5px 12px; cursor: pointer; }
+.btn:hover { border-color: var(--muted); }
+.btn.primary { background: var(--brand); color: #FFFFFF; border-color: var(--brand); }
+.btn.primary:hover { background: color-mix(in srgb, var(--brand) 85%, #FFFFFF); }
+.btn[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.msg { font-size: 12px; color: var(--muted); min-height: 1em; margin: 0; }
+textarea.svgsrc { width: 100%; box-sizing: border-box; height: 90px; font-family: var(--f-mono); font-size: 11px; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 8px; resize: vertical; }
+
+.how { padding-block: 28px 56px; }
+.how ol { margin: 0; padding-left: 1.3em; display: grid; gap: 6px; max-width: 75ch; color: var(--muted); }
+.how ol b { color: var(--ink); }
+pre { margin: 10px 0 0; padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; overflow-x: auto; font-family: var(--f-mono); font-size: 12px; line-height: 1.6; }
+
+@media (max-width: 560px) {
+  .wrap { padding-inline: 16px; }
+  header.wrap { padding-block: 28px 4px; }
+  .poster { height: 160px; }
+  .poster img { width: 104px; height: 104px; }
+}
+@media (prefers-reduced-motion: reduce) { .poster img { transition: none; } .poster:hover img { transform: none; } }
+</style>
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+
+<header class="wrap">
+  <p class="eyebrow mono">dbmanage.987ht.net · 浏览器标签图标 · 第三版</p>
+  <h1>dbmanage 图标候选</h1>
+  <p class="lede">从 <b>BOKE 自己的世界</b>出发找故事：捕鱼、斗地主、麻将、金币；公司名「波克城市」里的波和城；
+    数据分析里本来就长得像动物的图（鱼骨图、雷达图）；再加上这个平台本身的样子。现在一共十八个，新加的九个在前面，每个缩到 16px 还是一个清楚的轮廓。</p>
+</header>
+
+<section class="wrap" aria-labelledby="try-h">
+  <h2 id="try-h">放到标签栏里看</h2>
+  <p class="sub">两条标签栏里的图标都是真实的 16px，左边几个红的是现在的图标。点任意样张，就把它换进「智能问数」那个标签。</p>
+  <div class="try">
+    <div>
+      <p class="strip-label"><span>你现在的浅蓝主题</span><span>当前试戴：<span class="picked" id="picked"></span></span></p>
+      <div class="strip a"><div class="tabs" id="strip-a"></div></div>
+    </div>
+    <div>
+      <p class="strip-label"><span>深色主题</span></p>
+      <div class="strip b"><div class="tabs" id="strip-b"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" aria-labelledby="cands2-h">
+  <h2 id="cands2-h">新加的九个</h2>
+  <p class="sub">每张从 64px 缩到 16px；最右边是 16px 放大四倍的像素格，看缩小后到底还剩什么。</p>
+  <div class="grid" id="grid2"></div>
+</section>
+
+<section class="wrap" aria-labelledby="cands-h">
+  <h2 id="cands-h">上一批九个</h2>
+  <p class="sub">捕鱼、斗地主、金币和平台本身。</p>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section class="wrap how" aria-labelledby="how-h">
+  <h2 id="how-h">选定以后怎么换</h2>
+  <ol>
+    <li>点样张上的<b>下载整套</b>，拿到一个 zip：favicon.svg、favicon.ico（含 16/32/48）、favicon-32.png、apple-touch-icon.png（180，满版无圆角，iOS 会自己裁圆角）、icon-512.png。</li>
+    <li>交给前端放进站点根目录，替换 index.html 里原来的 icon 链接：</li>
+  </ol>
+  <pre>&lt;link rel="icon" href="/favicon.ico" sizes="32x32"&gt;
+&lt;link rel="icon" href="/favicon.svg" type="image/svg+xml"&gt;
+&lt;link rel="apple-touch-icon" href="/apple-touch-icon.png"&gt;</pre>
+  <p class="sub" style="margin-top:10px">浏览器会缓存旧图标，换完后强制刷新或清一下站点缓存才看得到。</p>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>
+(function () {
+  const NAVY = '#0A1463', PINK = '#EF7680', WHITE = '#FFFFFF', GOLD = '#FFC24B', MINT = '#7FD3C4';
+
+  // 四角星芒
+  const star = (cx, cy, r, fill) => {
+    const k = r * 0.18;
+    return '<path d="M' + cx + ' ' + (cy - r) + 'Q' + (cx + k) + ' ' + (cy - k) + ' ' + (cx + r) + ' ' + cy + 'Q' + (cx + k) + ' ' + (cy + k) + ' ' + cx + ' ' + (cy + r) +
+      'Q' + (cx - k) + ' ' + (cy + k) + ' ' + (cx - r) + ' ' + cy + 'Q' + (cx - k) + ' ' + (cy - k) + ' ' + cx + ' ' + (cy - r) + 'Z" fill="' + fill + '"/>';
+  };
+  // 一摞金币：从下往上叠 n 枚
+  const coins = (x, n) => {
+    let s = '';
+    for (let k = 0; k < n; k++) {
+      const y = 49 - k * 5.2;
+      s += '<path d="M' + (x - 7) + ' ' + y + 'v3.6a7 2.8 0 0 0 14 0V' + y + 'Z" fill="#D9930F"/>' +
+        '<ellipse cx="' + x + '" cy="' + y + '" rx="7" ry="2.8" fill="#FFD45C" stroke="#B9780A" stroke-width=".9"/>';
+    }
+    return s;
+  };
+
+  // 等轴魔方：三个面各 3×3，格子之间留缝
+  const cube = () => {
+    const T = [32, 7], TL = [9, 20.25], TR = [55, 20.25], C = [32, 33.5], BL = [9, 46.25], B = [32, 59.5];
+    const face = (o, a, b, colors) => {
+      let s = '';
+      const pt = (u, v) => [o[0] + (a[0] - o[0]) * u + (b[0] - o[0]) * v, o[1] + (a[1] - o[1]) * u + (b[1] - o[1]) * v];
+      for (let j = 0; j < 3; j++) {
+        for (let i = 0; i < 3; i++) {
+          const g = 0.035, u0 = i / 3 + g, u1 = (i + 1) / 3 - g, v0 = j / 3 + g, v1 = (j + 1) / 3 - g;
+          const q = [pt(u0, v0), pt(u1, v0), pt(u1, v1), pt(u0, v1)];
+          s += '<path d="M' + q.map((p) => p[0].toFixed(2) + ' ' + p[1].toFixed(2)).join('L') + 'Z" fill="' + colors[j * 3 + i] + '"/>';
+        }
+      }
+      return s;
+    };
+    return '<path d="M32 6L56 20V47L32 60.5L8 47V20Z" fill="#050A2E" stroke="#050A2E" stroke-width="2" stroke-linejoin="round"/>' +
+      face(T, TR, TL, ['#FFE08A', '#FFC24B', '#FF8A4C', '#FFC24B', '#FF8A4C', '#E8404D', '#FF8A4C', '#E8404D', '#C21F3A']) +
+      face(TL, C, BL, ['#5468E8', '#3E52D0', '#5468E8', '#3E52D0', '#5468E8', '#3E52D0', '#3E52D0', '#2A3AA8', '#3E52D0']) +
+      face(C, TR, B, ['#2A3AA8', '#1B2E9E', '#2A3AA8', '#1B2E9E', '#2A3AA8', '#1B2E9E', '#1B2E9E', '#2A3AA8', '#1B2E9E']);
+  };
+  // 海星：五条腿长短不一，就是一张五维雷达图
+  const starfish = () => {
+    const cx = 32, cy = 34, R = [22, 15, 20, 13.5, 18], pts = [], grid = (r) => {
+      const p = [];
+      for (let k = 0; k < 5; k++) { const a = (-90 + 72 * k) * Math.PI / 180; p.push((cx + r * Math.cos(a)).toFixed(2) + ' ' + (cy + r * Math.sin(a)).toFixed(2)); }
+      return 'M' + p.join('L') + 'Z';
+    };
+    const spokes = [];
+    for (let k = 0; k < 5; k++) {
+      const a = (-90 + 72 * k) * Math.PI / 180, b = (-54 + 72 * k) * Math.PI / 180;
+      pts.push((cx + R[k] * Math.cos(a)).toFixed(2) + ' ' + (cy + R[k] * Math.sin(a)).toFixed(2));
+      pts.push((cx + 7.5 * Math.cos(b)).toFixed(2) + ' ' + (cy + 7.5 * Math.sin(b)).toFixed(2));
+      spokes.push('M' + cx + ' ' + cy + 'L' + (cx + 22 * Math.cos(a)).toFixed(2) + ' ' + (cy + 22 * Math.sin(a)).toFixed(2));
+    }
+    return '<path d="' + grid(22) + grid(13) + spokes.join('') + '" fill="none" stroke="#FFFFFF" stroke-width="1" opacity=".28"/>' +
+      '<path d="M' + pts.join('L') + 'Z" fill="#FF8A4C" stroke="#FF8A4C" stroke-width="3.5" stroke-linejoin="round"/>' +
+      '<circle cx="' + cx + '" cy="' + cy + '" r="3" fill="#FFC24B"/>';
+  };
+  // 麻将的条子：竹条中间留一道竹节
+  const stick = (x, top, color) => '<rect x="' + x + '" y="' + top + '" width="5.5" height="' + (46 - top) + '" rx="2.75" fill="' + color + '"/>' +
+    '<path d="M' + x + ' ' + ((46 + top) / 2) + 'h5.5" stroke="#FFF8E7" stroke-width="1.4"/>';
+
+  // 第三版新加的九个
+  const NEW = [
+    { id: 'boke-city', name: '波克城市', badge: '名字里就有', glow: '#EF7680',
+      story: '公司名里就有：波克城市。楼群高低错落，本身就是一张柱状图；最高那栋是品牌粉，楼脚下那道浪是「波」。',
+      defs: '<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0A1463"/><stop offset="1" stop-color="#2B3FB8"/></linearGradient>' +
+        '<mask id="moon"><rect width="64" height="64" fill="#FFFFFF"/><circle cx="19" cy="12" r="5" fill="#000000"/></mask>',
+      bg: 'url(#bg)',
+      body: '<circle cx="28" cy="8" r=".9" fill="' + WHITE + '"/><circle cx="38" cy="12" r="1" fill="' + WHITE + '" opacity=".8"/><circle cx="7" cy="22" r=".8" fill="' + WHITE + '" opacity=".7"/>' +
+        '<circle cx="15.5" cy="14" r="6" fill="#FFD45C" mask="url(#moon)"/>' +
+        '<rect x="6" y="34" width="11" height="19" fill="#E8EDFF"/><rect x="19" y="23" width="11" height="30" fill="' + WHITE + '"/>' +
+        '<rect x="32" y="30" width="9" height="23" fill="#E8EDFF"/><path d="M50 8V15" stroke="' + PINK + '" stroke-width="2" stroke-linecap="round"/>' +
+        '<rect x="43" y="14" width="14" height="39" fill="' + PINK + '"/>' +
+        '<path d="M9 38h2.4M13 38h2.4M9 43h2.4M13 43h2.4M22 27h2.4M26 27h2.4M22 32h2.4M26 32h2.4M22 37h2.4M26 37h2.4M35 34h3M35 39h3" stroke="' + NAVY + '" stroke-width="2.4" opacity=".55"/>' +
+        '<path d="M46 19h3M51 19h3M46 24h3M51 24h3M46 29h3M51 29h3M46 34h3M51 34h3" stroke="' + WHITE + '" stroke-width="2.4" opacity=".75"/>' +
+        '<path d="M0 52Q8 48.5 16 52T32 52T48 52T64 52V64H0Z" fill="#2F6BE8"/>' +
+        '<path d="M8 57H18M28 59.5H40M46 56.5H56" stroke="#BFD6FF" stroke-width="1.4" stroke-linecap="round" opacity=".6"/>' },
+    { id: 'fishbone', name: '鱼骨图', badge: '最贴归因', glow: '#4FB6FF',
+      story: '鱼骨图本来就叫因果图，是做归因分析用的。问一句「昨天破产用户为什么激增」，画出来就是这条鱼。',
+      defs: '<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0B4A6E"/><stop offset="1" stop-color="#0A1463"/></linearGradient>',
+      bg: 'url(#bg)',
+      body: '<path d="M7 32H45M17 32L11 19.5M27 32L21 17.5M37 32L31 19.5M17 32L11 44.5M27 32L21 46.5M37 32L31 44.5M7 32L2.5 24M7 32L2.5 40" fill="none" stroke="' + WHITE + '" stroke-width="4" stroke-linecap="round"/>' +
+        '<circle cx="11" cy="19.5" r="2.4" fill="' + GOLD + '"/><circle cx="21" cy="17.5" r="2.4" fill="' + GOLD + '"/><circle cx="31" cy="19.5" r="2.4" fill="' + GOLD + '"/>' +
+        '<circle cx="11" cy="44.5" r="2.4" fill="' + GOLD + '"/><circle cx="21" cy="46.5" r="2.4" fill="' + GOLD + '"/><circle cx="31" cy="44.5" r="2.4" fill="' + GOLD + '"/>' +
+        '<path d="M43 21C53 21 60 26 60 32C60 38 53 43 43 43Z" fill="' + PINK + '"/>' +
+        '<path d="M47.5 24.5C45.5 28 45.5 36 47.5 39.5" fill="none" stroke="#C2475A" stroke-width="1.6" stroke-linecap="round"/>' +
+        '<circle cx="52.5" cy="29" r="2.4" fill="' + NAVY + '"/>' },
+    { id: 'mahjong', name: '麻将三条', badge: '谐音最妙', glow: '#FF6B76',
+      story: '麻将的「条」本来就是一根根竹条。三条按高矮排好，就是一张柱状图。',
+      defs: '<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A3202C"/><stop offset="1" stop-color="#5A0F18"/></linearGradient>',
+      bg: 'url(#bg)',
+      body: '<rect x="14" y="12" width="36" height="45" rx="6" fill="#1E9E5A"/><rect x="14" y="8" width="36" height="45" rx="6" fill="#FFF8E7"/>' +
+        '<rect x="14.6" y="8.6" width="34.8" height="43.8" rx="5.4" fill="none" stroke="#E6DCC3" stroke-width="1.2"/>' +
+        stick(20, 33, '#1E9E5A') + stick(29.25, 25, '#1E9E5A') + stick(38.5, 16, '#E8404D') },
+    { id: 'magic-8', name: '魔法 8 号球', glow: '#6A7BFF',
+      story: '心里想一个问题，摇一摇，答案浮到小窗口里。问数也是这样，只不过浮上来的是一张图。',
+      defs: '<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A1A6E"/><stop offset="1" stop-color="#0A1463"/></linearGradient>' +
+        '<radialGradient id="ball" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#4A4A5A"/><stop offset=".6" stop-color="#111118"/><stop offset="1" stop-color="#000000"/></radialGradient>',
+      bg: 'url(#bg)',
+      body: '<circle cx="32" cy="33" r="24" fill="url(#ball)"/>' +
+        '<circle cx="32" cy="31" r="11.5" fill="#0B1550" stroke="#3A4FD0" stroke-width="1.5"/>' +
+        '<path d="M22.5 25.5H41.5L32 41Z" fill="#4F86FF"/>' +
+        '<rect x="27.6" y="29" width="2.2" height="4" fill="' + WHITE + '"/><rect x="30.9" y="27" width="2.2" height="6" fill="' + WHITE + '"/>' +
+        '<rect x="34.2" y="26.5" width="2.2" height="6.5" fill="' + PINK + '"/>' +
+        '<ellipse cx="21" cy="19" rx="7" ry="3.6" fill="' + WHITE + '" opacity=".28" transform="rotate(-35 21 19)"/>' },
+    { id: 'starfish-radar', name: '海星雷达图', glow: '#FF8A4C',
+      story: '海星五条腿，长短不一，叠在五边形的格子上，就是一张五维雷达图。',
+      defs: '<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0E5E8F"/><stop offset="1" stop-color="#0A1463"/></linearGradient>',
+      bg: 'url(#bg)', body: starfish() },
+    { id: 'fishtank-db', name: '鱼缸数据库', glow: '#FF8A3D',
+      story: '数据库的圆柱换成玻璃鱼缸，里面游着一条金鱼。捕鱼公司的数据库，大概就该长这样。',
+      bg: NAVY,
+      body: '<path d="M14 15V49A18 6 0 0 0 50 49V15A18 6 0 0 1 14 15Z" fill="#A9C4FF" opacity=".22"/>' +
+        '<path d="M14 24A18 6 0 0 0 50 24V49A18 6 0 0 1 14 49Z" fill="#3E7BFF"/><ellipse cx="32" cy="24" rx="18" ry="6" fill="#6E9BFF"/>' +
+        '<path d="M14 37A18 6 0 0 0 50 37" fill="none" stroke="#2F5FD8" stroke-width="2"/>' +
+        '<path d="M35 37L41 32.5V41.5Z" fill="#FF8A3D"/><ellipse cx="29.5" cy="37" rx="7" ry="4.4" fill="#FF8A3D"/><circle cx="26" cy="35.8" r="1.2" fill="' + NAVY + '"/>' +
+        '<circle cx="23" cy="30" r="1.4" fill="none" stroke="' + WHITE + '" stroke-width="1"/><circle cx="21" cy="26.5" r="1" fill="none" stroke="' + WHITE + '" stroke-width=".9"/>' +
+        '<ellipse cx="32" cy="15" rx="18" ry="6" fill="none" stroke="' + WHITE + '" stroke-width="2.5"/>' +
+        '<path d="M14 15V49A18 6 0 0 0 50 49V15" fill="none" stroke="' + WHITE + '" stroke-width="2.5"/>' +
+        '<path d="M19 21V44" stroke="' + WHITE + '" stroke-width="2" stroke-linecap="round" opacity=".5"/>' },
+    { id: 'heat-cube', name: '魔方热力图', glow: '#FF8A4C',
+      story: '魔方的每一面都是 3×3 的格子。顶面按冷热上色，就是一张热力图。',
+      defs: '<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1B2A8F"/><stop offset="1" stop-color="#0A1463"/></linearGradient>',
+      bg: 'url(#bg)', body: cube() },
+    { id: 'koi', name: '锦鲤', glow: '#FF6B4A',
+      story: '转发这条锦鲤，查什么数都对得上。',
+      defs: '<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0E5F5B"/><stop offset="1" stop-color="#0A2F3F"/></linearGradient>' +
+        '<clipPath id="koi"><path d="M32 8C40 8 44 18 43 28C42 38 37 46 32 50C27 46 22 38 21 28C20 18 24 8 32 8Z"/></clipPath>',
+      bg: 'url(#bg)',
+      body: '<circle cx="11" cy="52" r="6.5" fill="#2BAA6E"/><path d="M11 52L17.5 52A6.5 6.5 0 0 0 15.6 47.4Z" fill="#0B3A45"/>' +
+        '<ellipse cx="49" cy="13" rx="6.5" ry="2.2" fill="none" stroke="' + WHITE + '" stroke-width="1" opacity=".35"/>' +
+        '<g transform="translate(33 33) rotate(28) scale(.9) translate(-32 -33)">' +
+        '<ellipse cx="22" cy="24" rx="7.5" ry="3.4" fill="' + WHITE + '" opacity=".92" transform="rotate(-35 22 24)"/>' +
+        '<ellipse cx="42" cy="24" rx="7.5" ry="3.4" fill="' + WHITE + '" opacity=".92" transform="rotate(35 42 24)"/>' +
+        '<path d="M32 47C36 52 42 54 46 58C40 59 35 57 32 54C29 57 24 59 18 58C22 54 28 52 32 47Z" fill="#FFE4D6"/>' +
+        '<path d="M32 8C40 8 44 18 43 28C42 38 37 46 32 50C27 46 22 38 21 28C20 18 24 8 32 8Z" fill="' + WHITE + '"/>' +
+        '<g clip-path="url(#koi)"><ellipse cx="32" cy="14" rx="7" ry="5" fill="#E8402D"/><circle cx="28" cy="30" r="6.5" fill="#E8402D"/><circle cx="37" cy="41" r="4.5" fill="#FF8A3D"/></g>' +
+        '<circle cx="28.6" cy="13.5" r="1.3" fill="' + NAVY + '"/><circle cx="35.4" cy="13.5" r="1.3" fill="' + NAVY + '"/></g>' },
+    { id: 'jellyfish', name: '水母折线', glow: '#FF9AA8',
+      story: '水母的触须垂下来，正好是三条折线，末端的点就是数据点。',
+      defs: '<radialGradient id="bg" cx=".5" cy=".3" r=".9"><stop offset="0" stop-color="#2A2390"/><stop offset="1" stop-color="#0A0E40"/></radialGradient>' +
+        '<linearGradient id="dome" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFB3BE"/><stop offset="1" stop-color="#EF7680"/></linearGradient>',
+      bg: 'url(#bg)',
+      body: '<path d="M22 33L19 40L24 46.5L20 53" fill="none" stroke="' + MINT + '" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '<path d="M32 33L35 41L30 47.5L34 56" fill="none" stroke="' + GOLD + '" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '<path d="M42 33L45 39L41 46L45 52" fill="none" stroke="' + WHITE + '" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '<circle cx="20" cy="53" r="2.4" fill="' + MINT + '"/><circle cx="34" cy="56" r="2.4" fill="' + GOLD + '"/><circle cx="45" cy="52" r="2.4" fill="' + WHITE + '"/>' +
+        '<path d="M13 31C13 18 21.5 10 32 10C42.5 10 51 18 51 31Q46.5 34 42 31Q37 34 32 31Q27 34 22 31Q17.5 34 13 31Z" fill="url(#dome)"/>' +
+        '<ellipse cx="25" cy="18" rx="5" ry="3" fill="' + WHITE + '" opacity=".35" transform="rotate(-25 25 18)"/>' +
+        '<circle cx="27.5" cy="24" r="1.8" fill="' + NAVY + '"/><circle cx="36.5" cy="24" r="1.8" fill="' + NAVY + '"/>' },
+  ];
+
+  // 所有矢量图标画在 64×64 的格子上；像素章鱼按 16×16 逐格画
+  const ICONS = [
+    { id: 'pie-fish', name: '饼图鱼', badge: '首推', glow: '#3E7BFF',
+      story: '捕鱼起家，问数就是在数据里捕鱼。一张饼图被咬掉一角，就成了一条鱼：三块颜色是三项占比，缺口是鱼嘴。',
+      defs: '<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1446B8"/><stop offset="1" stop-color="#0A1463"/></linearGradient>',
+      bg: 'url(#bg)',
+      body: '<circle cx="12" cy="13" r="3.2" fill="none" stroke="#9FC2FF" stroke-width="2"/><circle cx="19" cy="7.5" r="1.8" fill="#9FC2FF"/>' +
+        '<path d="M41 33L56.5 20C54 27.5 54 38.5 56.5 46Z" fill="' + GOLD + '"/>' +
+        '<path d="M28 33L13.28 24.5A17 17 0 0 1 45 33Z" fill="' + PINK + '"/>' +
+        '<path d="M28 33L45 33A17 17 0 0 1 28 50Z" fill="' + WHITE + '"/>' +
+        '<path d="M28 33L28 50A17 17 0 0 1 13.28 41.5Z" fill="' + MINT + '"/>' +
+        '<path d="M28 33L13.28 24.5M28 33H45M28 33V50M28 33L13.28 41.5" stroke="' + NAVY + '" stroke-width="1.6" stroke-linecap="round"/>' +
+        '<circle cx="25" cy="25.5" r="2.6" fill="' + NAVY + '"/>' },
+    { id: 'pixel-octopus', name: '像素章鱼', badge: '最贴平台', glow: '#EF7680',
+      story: '顶栏正好八个入口：系统管理、CMDB、运维工单、查询系统、审批管理、巡检平台、智能问数、更多。一条腿管一个。按 16×16 逐格画，进了标签栏一个像素都不糊。',
+      pixels: [
+        '.nnnnnnnnnnnnnn.',
+        'nnnnnPPPPPPnnnnn',
+        'nnnPHHPPPPPPPnnn',
+        'nnPPPPPPPPPPPPnn',
+        'nnPWWPPPPPPWWPnn',
+        'nPPWNPPPPPPWNPPn',
+        'nPLPPPPPPPPPPLPn',
+        'nPPPPPPDDPPPPPPn',
+        'nPPPPPPPPPPPPPPn',
+        'nPnPnPnPPnPnPnPn',
+        'nPnPnPnPPnPnPnPn',
+        'nPnPnPnPPnPnPnPn',
+        'PnnPnPnnnnPnPnnP',
+        'PnnnnPnnnnPnnnnP',
+        'nPnnnnnnnnnnnnPn',
+        '.nnnnnnnnnnnnnn.',
+      ] },
+    { id: 'bobber', name: '浮漂问号', badge: '最贴问数', glow: '#4F86FF',
+      story: '问号的那个点换成浮漂，漂在数据的水面上。问一句，就是下一竿。',
+      defs: '<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0A1463"/><stop offset="1" stop-color="#1B2E9E"/></linearGradient>',
+      bg: 'url(#bg)',
+      body: '<rect y="47" width="64" height="17" fill="#2F6BE8"/>' +
+        '<ellipse cx="34" cy="47.5" rx="20" ry="5" fill="none" stroke="#BFD6FF" stroke-width="1.2" opacity=".45"/>' +
+        '<ellipse cx="34" cy="47.5" rx="12.5" ry="3.1" fill="none" stroke="#BFD6FF" stroke-width="1.6" opacity=".9"/>' +
+        '<path d="M21 21.5C21 13.5 26.5 9 33 9C39.5 9 45 13 45 19.5C45 25 39.5 27 36.5 29.5C34.8 30.9 34 31.8 34 33.5" fill="none" stroke="' + WHITE + '" stroke-width="7" stroke-linecap="round"/>' +
+        '<path d="M28.2 47A5.8 5.8 0 0 0 39.8 47Z" fill="' + WHITE + '"/><path d="M28.2 47A5.8 5.8 0 0 1 39.8 47Z" fill="#FF5A66"/>' },
+    { id: 'anglerfish', name: '鮟鱇提灯', glow: '#FFC24B',
+      story: '深海鮟鱇自己带一盏灯。数据像深海，这盏灯就是答案亮起来的那一下。',
+      defs: '<radialGradient id="bg" cx=".3" cy=".25" r=".9"><stop offset="0" stop-color="#1B2C8F"/><stop offset="1" stop-color="#050A2E"/></radialGradient>' +
+        '<radialGradient id="glow"><stop offset="0" stop-color="#FFE08A" stop-opacity=".95"/><stop offset=".45" stop-color="#FFC24B" stop-opacity=".45"/><stop offset="1" stop-color="#FFC24B" stop-opacity="0"/></radialGradient>' +
+        '<linearGradient id="fish" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5468E8"/><stop offset="1" stop-color="#2A3AA8"/></linearGradient>',
+      bg: 'url(#bg)',
+      body: '<circle cx="16" cy="15" r="13" fill="url(#glow)"/>' +
+        '<path d="M50 40L61 29V51Z" fill="#2A3AA8"/>' +
+        '<ellipse cx="36" cy="40" rx="18" ry="15" fill="url(#fish)"/>' +
+        '<path d="M17.5 36L33 41.5L18 49Z" fill="#050A2E"/>' +
+        '<path d="M19.5 37.2L21.5 40.2L23.6 38.4L25.6 41.2M20 47.8L22 44.6L24.2 46.2L26.2 43.6" fill="none" stroke="' + WHITE + '" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>' +
+        '<circle cx="34" cy="32" r="4.4" fill="' + WHITE + '"/><circle cx="32.8" cy="31.2" r="2.1" fill="#050A2E"/>' +
+        '<path d="M31 26C29 15 23 11 17 14.5" fill="none" stroke="#9FB0FF" stroke-width="2.4" stroke-linecap="round"/>' +
+        '<circle cx="16" cy="15" r="4.6" fill="#FFD45C"/><circle cx="14.6" cy="13.6" r="1.4" fill="' + WHITE + '"/>' },
+    { id: 'coin-bars', name: '金币柱状图', glow: '#FFC24B',
+      story: '捕鱼游戏里最熟悉的金币，摞成三摞，就是一张往上走的柱状图。',
+      defs: '<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#16308F"/><stop offset="1" stop-color="#0A1463"/></linearGradient>',
+      bg: 'url(#bg)',
+      body: '<ellipse cx="32" cy="56" rx="25" ry="2.6" fill="#000000" opacity=".25"/>' + coins(15, 2) + coins(32, 4) + coins(49, 7) + star(49, 8.5, 4.6, WHITE) },
+    { id: 'joker-pair', name: '数据王炸', glow: '#2BBF8A',
+      story: '斗地主里最硬的一手是王炸。后面那张是王，前面那张的花色是一张柱状图。',
+      defs: '<radialGradient id="bg" cx=".5" cy=".4" r=".8"><stop offset="0" stop-color="#17845F"/><stop offset="1" stop-color="#0B4A36"/></radialGradient>',
+      bg: 'url(#bg)',
+      body: '<g transform="rotate(-14 24 33.5)"><rect x="11" y="15" width="26" height="37" rx="4" fill="' + NAVY + '" stroke="' + WHITE + '" stroke-width="2"/>' +
+        '<path d="M16.5 39V29L20.5 33L24 26L27.5 33L31.5 29V39Z" fill="' + GOLD + '"/></g>' +
+        '<g transform="rotate(9 40 34)"><rect x="29.5" y="19" width="26" height="37" rx="4" fill="#000000" opacity=".25"/>' +
+        '<rect x="28" y="17" width="26" height="37" rx="4" fill="' + WHITE + '"/>' +
+        '<circle cx="32" cy="21.5" r="1.7" fill="' + PINK + '"/>' +
+        '<rect x="32.5" y="36" width="5" height="9" rx="1" fill="' + NAVY + '"/><rect x="38.5" y="31" width="5" height="14" rx="1" fill="' + NAVY + '"/>' +
+        '<rect x="44.5" y="25" width="5" height="20" rx="1" fill="' + PINK + '"/></g>' },
+    { id: 'night-owl', name: '夜班猫头鹰', glow: '#8C7BFF',
+      story: '巡检平台的夜班猫头鹰。两只眼睛是两个环形进度，整夜盯着指标。',
+      defs: '<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0A1463"/><stop offset="1" stop-color="#2A1A6E"/></linearGradient>',
+      bg: 'url(#bg)',
+      body: '<circle cx="9" cy="10" r="1.1" fill="' + WHITE + '"/><circle cx="56" cy="16" r=".9" fill="' + WHITE + '" opacity=".8"/>' +
+        '<path d="M13 24L13.5 9L24 17C29 15.3 35 15.3 40 17L50.5 9L51 24C55 34 52.5 46 45 51.5C41.3 54.3 36.8 56 32 56C27.2 56 22.7 54.3 19 51.5C11.5 46 9 34 13 24Z" fill="#6A7BEA"/>' +
+        '<circle cx="24" cy="33" r="9" fill="' + WHITE + '"/><circle cx="40" cy="33" r="9" fill="' + WHITE + '"/>' +
+        '<circle cx="24" cy="33" r="5.6" fill="none" stroke="#D7DCF7" stroke-width="3.6"/><circle cx="40" cy="33" r="5.6" fill="none" stroke="#D7DCF7" stroke-width="3.6"/>' +
+        '<circle cx="24" cy="33" r="5.6" fill="none" stroke="' + PINK + '" stroke-width="3.6" stroke-dasharray="24.6 35.2" transform="rotate(-90 24 33)"/>' +
+        '<circle cx="40" cy="33" r="5.6" fill="none" stroke="' + GOLD + '" stroke-width="3.6" stroke-dasharray="15.8 35.2" transform="rotate(-90 40 33)"/>' +
+        '<circle cx="24" cy="33" r="2" fill="' + NAVY + '"/><circle cx="40" cy="33" r="2" fill="' + NAVY + '"/>' +
+        '<path d="M29.5 41.5H34.5L32 46Z" fill="' + GOLD + '"/>' },
+    { id: 'dice-trend', name: '骰子涨势', glow: '#FF6B76',
+      story: '骰子的三点本来就是一条斜线。让点一个比一个大，就成了涨势。',
+      defs: '<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F48A93"/><stop offset="1" stop-color="#D8362B"/></linearGradient>',
+      bg: 'url(#bg)',
+      body: '<rect x="15" y="17" width="36" height="36" rx="9" fill="#7A1420" opacity=".35" transform="rotate(-10 33 35)"/>' +
+        '<g transform="rotate(-10 32 32)"><rect x="13" y="13" width="38" height="38" rx="9" fill="' + WHITE + '"/>' +
+        '<path d="M22 42L42 22" stroke="' + NAVY + '" stroke-width="1.6" stroke-dasharray="2 3" opacity=".35"/>' +
+        '<circle cx="22" cy="42" r="3.4" fill="' + NAVY + '"/><circle cx="32" cy="32" r="4.4" fill="' + NAVY + '"/><circle cx="42" cy="22" r="5.6" fill="#E8404D"/></g>' },
+    { id: 'whale-spout', name: '鲸鱼换气', glow: '#4F86FF',
+      story: '鲸鱼换气，喷出来的不是水，是一张往上走的柱状图。',
+      defs: '<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1B4FD0"/><stop offset="1" stop-color="#0A1463"/></linearGradient>',
+      bg: 'url(#bg)',
+      body: '<rect x="17.5" y="20" width="5.5" height="12" rx="2.75" fill="' + MINT + '"/><rect x="24.5" y="15" width="5.5" height="17" rx="2.75" fill="' + GOLD + '"/>' +
+        '<rect x="31.5" y="9" width="5.5" height="23" rx="2.75" fill="' + PINK + '"/>' +
+        '<path d="M7 45C7 35.5 15.5 30 28 30C42 30 50 37 51.5 43.5C54.5 41 57.5 36.5 60 35C60 41.5 57.5 47 54 49.5C50 54.5 41.5 57 30 57C15.5 57 7 53 7 45Z" fill="#E8EEFF"/>' +
+        '<path d="M10 49C16 53.5 24 55 31 55C40 55 46 53 50 50.5" fill="none" stroke="#B9C6F0" stroke-width="2"/>' +
+        '<circle cx="17" cy="42" r="2.3" fill="' + NAVY + '"/><path d="M10.5 46.5C13 48 16 48.4 19 47.6" stroke="' + NAVY + '" stroke-width="1.6" fill="none" stroke-linecap="round"/>' },
+  ];
+  const PIXEL = { n: NAVY, P: PINK, D: '#C2475A', W: WHITE, N: NAVY, L: '#FFB0B8', H: '#FFC9CE' };
+  const CURRENT = 'data:image/png;base64,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';
+
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* 存不了就不记 */ } },
+  };
+
+  function pixelSvg(rows, fullBleed, size) {
+    let r = '';
+    rows.forEach((raw, y) => {
+      const line = fullBleed ? raw.replace(/\./g, 'n') : raw;
+      for (let x = 0; x < 16;) {
+        const ch = line[x];
+        let w = 1;
+        while (x + w < 16 && line[x + w] === ch) w++;
+        if (ch !== '.') r += '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="1" fill="' + PIXEL[ch] + '"/>';
+        x += w;
+      }
+    });
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges"' + size + '>' + r + '</svg>';
+  }
+
+  function svg(icon, opts) {
+    const o = opts || {};
+    const size = o.size ? ' width="' + o.size + '" height="' + o.size + '"' : '';
+    if (icon.pixels) return pixelSvg(icon.pixels, o.fullBleed, size);
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"' + size + '><defs>' + (icon.defs || '') +
+      '<clipPath id="frame"><rect width="64" height="64" rx="' + (o.fullBleed ? 0 : 14) + '"/></clipPath></defs>' +
+      '<g clip-path="url(#frame)"><rect width="64" height="64" fill="' + icon.bg + '"/>' + icon.body + '</g></svg>';
+  }
+  const url = (icon) => 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg(icon));
+
+  // 新加的排前面，编号 10–18；上一批 01–09
+  ICONS.forEach((icon, i) => { icon.no = i + 1; });
+  NEW.forEach((icon, i) => { icon.no = ICONS.length + i + 1; });
+  const ALL = NEW.concat(ICONS);
+  let picked = ALL.find((i) => i.id === store.get('icon.picked2')) || NEW[0];
+
+  // 单独打开这一页时（不在 claude.ai 里），标签页自己的图标就换成当前试戴的那个
+  function setFavicon(icon) {
+    let el = document.querySelector('link[rel="icon"]');
+    if (!el) { el = document.createElement('link'); el.rel = 'icon'; document.head.appendChild(el); }
+    el.type = 'image/svg+xml';
+    el.href = url(icon);
+  }
+
+  function strip(icon) {
+    const cur = '<img src="' + CURRENT + '" alt="现在的图标">';
+    const mine = '<img src="' + url(icon) + '" alt="' + esc(icon.name) + '">';
+    const dot = (c) => '<img alt="" src="data:image/svg+xml;charset=utf-8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="' + c + '"/></svg>') + '">';
+    return '<div class="tab icon-only">' + dot('#5F6368') + '</div>' +
+      '<div class="tab icon-only">' + cur + '</div><div class="tab icon-only">' + cur + '</div><div class="tab icon-only">' + cur + '</div>' +
+      '<div class="tab icon-only">' + dot('#24292F') + '</div><div class="tab icon-only">' + dot('#FF6A00') + '</div>' +
+      '<div class="tab icon-only">' + mine + '</div>' +
+      '<div class="tab">' + cur + '<span class="t">SkillHub - 企业内…</span></div>' +
+      '<div class="tab on">' + mine + '<span class="t">智能问数 - BOKE</span></div>';
+  }
+
+  function renderStrips() {
+    $('strip-a').innerHTML = strip(picked);
+    $('strip-b').innerHTML = strip(picked);
+    $('picked').textContent = picked.name;
+    setFavicon(picked);
+    document.querySelectorAll('.card').forEach((c) => c.setAttribute('aria-current', String(c.dataset.id === picked.id)));
+    document.querySelectorAll('.pick').forEach((b) => b.setAttribute('aria-pressed', String(b.closest('.card').dataset.id === picked.id)));
+  }
+
+  function card(icon) {
+    return '<article class="card" data-id="' + icon.id + '" style="--glow:' + icon.glow + '">' +
+      '<button class="poster" type="button" aria-label="把「' + esc(icon.name) + '」放进标签栏"><span class="no">' + String(icon.no).padStart(2, '0') + '</span>' +
+      '<img src="' + url(icon) + '" alt=""></button>' +
+      '<div class="inner"><p class="name">' + esc(icon.name) + (icon.badge ? '<span class="badge">' + esc(icon.badge) + '</span>' : '') + '</p>' +
+      '<p class="story">' + esc(icon.story) + '</p>' +
+      '<div class="ladder">' +
+      [64, 32, 16].map((s) => '<div class="rung"><img src="' + url(icon) + '" width="' + s + '" height="' + s + '" alt=""><span class="mono">' + s + 'px</span></div>').join('') +
+      '<div class="rung"><canvas width="16" height="16" data-px="' + icon.id + '" aria-label="16px 放大四倍"></canvas><span class="mono">16px ×4</span></div></div>' +
+      '<div class="acts"><button class="btn pick" type="button" aria-pressed="false">放进标签栏</button>' +
+      '<button class="btn copy" type="button">复制 SVG</button>' +
+      '<button class="btn primary dl" type="button" hidden>下载整套</button></div>' +
+      '<p class="msg" aria-live="polite"></p></div></article>';
+  }
+
+  function loadImg(src) {
+    return new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = () => rej(new Error('图片没画出来')); im.src = src; });
+  }
+
+  async function pixelPreviews() {
+    for (const icon of ALL) {
+      const cv = document.querySelector('canvas[data-px="' + icon.id + '"]');
+      try {
+        const im = await loadImg('data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg(icon, { size: 16 })));
+        cv.getContext('2d').drawImage(im, 0, 0, 16, 16);
+      } catch (e) { cv.hidden = true; }
+    }
+  }
+
+  async function png(icon, size, fullBleed) {
+    const im = await loadImg('data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg(icon, { size, fullBleed })));
+    const cv = document.createElement('canvas');
+    cv.width = cv.height = size;
+    const g = cv.getContext('2d');
+    if (icon.pixels) g.imageSmoothingEnabled = false;
+    g.drawImage(im, 0, 0, size, size);
+    return new Promise((res, rej) => cv.toBlob((b) => (b ? res(b) : rej(new Error('PNG 生成失败'))), 'image/png'));
+  }
+
+  // ICO 里直接塞 PNG（Vista 以后和所有现代浏览器都认）
+  async function ico(icon) {
+    const sizes = [16, 32, 48];
+    const bufs = await Promise.all(sizes.map(async (s) => new Uint8Array(await (await png(icon, s)).arrayBuffer())));
+    const head = 6 + 16 * sizes.length;
+    const out = new Uint8Array(head + bufs.reduce((n, b) => n + b.length, 0));
+    const dv = new DataView(out.buffer);
+    dv.setUint16(2, 1, true);
+    dv.setUint16(4, sizes.length, true);
+    let off = head;
+    sizes.forEach((s, i) => {
+      const e = 6 + 16 * i;
+      out[e] = s; out[e + 1] = s;
+      dv.setUint16(e + 4, 1, true);
+      dv.setUint16(e + 6, 32, true);
+      dv.setUint32(e + 8, bufs[i].length, true);
+      dv.setUint32(e + 12, off, true);
+      out.set(bufs[i], off);
+      off += bufs[i].length;
+    });
+    return out;
+  }
+
+  async function pack(icon) {
+    const zip = new JSZip();
+    zip.file('favicon.svg', svg(icon));
+    zip.file('favicon.ico', await ico(icon));
+    zip.file('favicon-32.png', await png(icon, 32));
+    zip.file('apple-touch-icon.png', await png(icon, 180, true));
+    zip.file('icon-512.png', await png(icon, 512));
+    zip.file('接入说明.txt', '放到站点根目录，在 index.html 的 <head> 里替换原来的 icon：\r\n\r\n' +
+      '<link rel="icon" href="/favicon.ico" sizes="32x32">\r\n<link rel="icon" href="/favicon.svg" type="image/svg+xml">\r\n' +
+      '<link rel="apple-touch-icon" href="/apple-touch-icon.png">\r\n\r\n浏览器会缓存旧图标，换完强制刷新才看得到。\r\n');
+    return zip.generateAsync({ type: 'blob' });
+  }
+
+  let downloads = null;
+
+  function wire(gridEl) {
+    gridEl.addEventListener('click', async (e) => {
+      const cardEl = e.target.closest('.card');
+      if (!cardEl) return;
+      const icon = ALL.find((i) => i.id === cardEl.dataset.id);
+      const msg = cardEl.querySelector('.msg');
+      if (e.target.closest('.poster, .pick')) {
+        picked = icon;
+        store.set('icon.picked2', icon.id);
+        renderStrips();
+        $('try-h').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+      } else if (e.target.closest('.copy')) {
+        const text = svg(icon);
+        try {
+          await navigator.clipboard.writeText(text);
+          msg.textContent = '已复制 SVG 源码。';
+        } catch (err) {
+          let ta = cardEl.querySelector('textarea');
+          if (!ta) { ta = document.createElement('textarea'); ta.className = 'svgsrc'; ta.readOnly = true; ta.value = text; cardEl.querySelector('.inner').appendChild(ta); }
+          ta.focus(); ta.select();
+          msg.textContent = '这里不让直接写剪贴板，源码已选中，按 Ctrl+C 复制。';
+        }
+      } else if (e.target.closest('.dl') && downloads) {
+        const btn = e.target.closest('.dl');
+        btn.disabled = true;
+        msg.textContent = '正在打包…';
+        try {
+          const blob = await pack(icon);
+          await downloads.save({ filename: 'dbmanage-icon-' + icon.id + '.zip', data: blob });
+          msg.textContent = '已保存 dbmanage-icon-' + icon.id + '.zip。';
+        } catch (err) {
+          msg.textContent = err && err.code === 'declined' ? '' : '没保存成功：' + ((err && err.message) || '未知原因') + '。可以先用「复制 SVG」。';
+        } finally {
+          btn.disabled = false;
+        }
+      }
+    });
+  }
+
+  $('grid2').innerHTML = NEW.map(card).join('');
+  $('grid').innerHTML = ICONS.map(card).join('');
+  renderStrips();
+  pixelPreviews();
+  wire($('grid2'));
+  wire($('grid'));
+  // 在 claude.ai 里走查看器的保存能力（拿不到就只留「复制 SVG」）；单独打开时用浏览器自己的下载
+  const browserSave = {
+    save({ filename, data }) {
+      const href = URL.createObjectURL(data instanceof Blob ? data : new Blob([data]));
+      const a = document.createElement('a');
+      a.href = href;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(href), 2000);
+      return Promise.resolve({ status: 'saved' });
+    },
+  };
+  const ready = window.claude && window.claude.use ? window.claude.use('downloads') : Promise.resolve(browserSave);
+  ready.then((ns) => {
+    if (!ns || typeof JSZip === 'undefined') return;
+    downloads = ns;
+    document.querySelectorAll('.dl').forEach((b) => { b.hidden = false; });
+  }).catch(() => {});
+})();
+</script>
+
+</body>
+</html>
