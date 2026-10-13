@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="dbmanage 浏览器标签图标的二十四个候选，包含 Codex 几何海洋系列，可试戴真实 16px 标签图标并下载整套文件。">
+<meta name="description" content="dbmanage 浏览器标签图标的二十五个候选，包含 Codex 几何海洋系列与鎏金航海罗盘，可试戴真实 16px 标签图标并下载整套文件。">
 <title>dbmanage 图标候选</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -127,7 +127,7 @@ pre { margin: 10px 0 0; padding: 12px 14px; background: var(--surface); border: 
   <p class="eyebrow mono">dbmanage · 浏览器标签图标 · 第四版</p>
   <h1>dbmanage 图标候选</h1>
   <p class="lede">从 <b>BOKE 自己的世界</b>出发找故事：捕鱼、斗地主、麻将、金币；公司名「波克城市」里的波和城；
-    数据分析里本来就长得像动物的图（鱼骨图、雷达图）；再加上这个平台本身的样子。现在一共二十四个，新增 Codex 的六款几何海洋系列；从大图到真实 16px，直接比较缩小后的轮廓。</p>
+    数据分析里本来就长得像动物的图（鱼骨图、雷达图）；再加上这个平台本身的样子。现在一共二十五个，包含 Codex 几何海洋系列和新加的精致航海罗盘；从大图到真实 16px，直接比较缩小后的轮廓。</p>
 </header>
 
 <section class="wrap" aria-labelledby="try-h">
@@ -146,7 +146,7 @@ pre { margin: 10px 0 0; padding: 12px 14px; background: var(--surface); border: 
 </section>
 
 <section class="wrap codex-series" id="codex" aria-labelledby="codex-h">
-  <h2 id="codex-h">Codex · 几何海洋六款</h2>
+  <h2 id="codex-h">Codex · 几何海洋与航海罗盘</h2>
   <p class="sub">深蓝、米白、珊瑚红与海水绿。用粗线条和留白做标记，让小图标先有清楚的轮廓，再讲故事。点击样张可试戴，支持复制 SVG 和下载整套。</p>
   <div class="grid" id="grid-codex"></div>
 </section>
@@ -506,7 +506,7 @@ pre { margin: 10px 0 0; padding: 12px 14px; background: var(--surface); border: 
   }
 
   function card(icon) {
-    return '<article class="card" data-id="' + icon.id + '" style="--glow:' + icon.glow + '">' +
+    return '<article class="card" id="' + icon.id + '" data-id="' + icon.id + '" style="--glow:' + icon.glow + '">' +
       '<button class="poster" type="button" aria-label="把「' + esc(icon.name) + '」放进标签栏"><span class="no">' + String(icon.no).padStart(2, '0') + '</span>' +
       '<img src="' + url(icon) + '" alt=""></button>' +
       '<div class="inner"><p class="name">' + esc(icon.name) + (icon.badge ? '<span class="badge">' + esc(icon.badge) + '</span>' : '') + '</p>' +

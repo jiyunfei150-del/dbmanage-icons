@@ -1,6 +1,10 @@
 /* Codex series: bold marine geometry, drawn for favicon scale. */
 window.CODEX_ICONS = (() => {
   const navy = '#101C52', ivory = '#FFF5DF', coral = '#FF7868', mint = '#8CE0CF';
+  const compassTicks = Array.from({ length: 24 }, (_, i) => {
+    const major = i % 6 === 0;
+    return `<path d="M32 13.5V${major ? 17.5 : 15.5}" transform="rotate(${i * 15} 32 33)" stroke="${major ? '#FFE4A0' : '#BDA571'}" stroke-width="${major ? 1.4 : .8}" stroke-linecap="round"/>`;
+  }).join('');
   return [
     {
       id: 'cx-query-tide', name: '问潮', badge: 'Codex 首选', glow: coral, bg: navy,
@@ -31,6 +35,12 @@ window.CODEX_ICONS = (() => {
       id: 'cx-data-compass', name: '数据罗盘', glow: coral, bg: ivory,
       story: '用罗盘表达“找到方向”。深蓝圆环里只有一根双色指针，重心清楚，浅色标签栏和深色标签栏都能辨认。',
       body: `<circle cx="32" cy="32" r="22" fill="none" stroke="${navy}" stroke-width="7"/><path d="M43 18L36 36L21 46L28 28Z" fill="${navy}"/><path d="M43 18L36 36L28 28Z" fill="${coral}"/><circle cx="32" cy="32" r="3" fill="${ivory}"/>`,
+    },
+    {
+      id: 'cx-mariner-compass', name: '鎏金航海罗盘', badge: '精致版', glow: '#E7BD6B', bg: '#101A35',
+      story: '黄铜表圈、蓝色珐琅盘面、二十四道刻度与红白指针。大图看金属层次，小图留下金环和针尖，与简洁版并排比较。',
+      defs: `<linearGradient id="brass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFF0BA"/><stop offset=".24" stop-color="#D4A350"/><stop offset=".49" stop-color="#FFE5A2"/><stop offset=".73" stop-color="#A36C2F"/><stop offset="1" stop-color="#E7BE73"/></linearGradient><radialGradient id="enamel" cx=".35" cy=".3" r=".8"><stop stop-color="#264B6D"/><stop offset=".65" stop-color="#122D4E"/><stop offset="1" stop-color="#0A1933"/></radialGradient><linearGradient id="red-needle" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FF9B82"/><stop offset=".5" stop-color="#F05C53"/><stop offset="1" stop-color="#AE333B"/></linearGradient>`,
+      body: `<circle cx="32" cy="5" r="3" fill="none" stroke="url(#brass)" stroke-width="2"/><circle cx="32" cy="34" r="27" fill="#060E22"/><circle cx="32" cy="33" r="26" fill="url(#brass)"/><circle cx="32" cy="33" r="23.5" fill="#57472F"/><circle cx="32" cy="33" r="22.4" fill="url(#enamel)" stroke="#FFDE95" stroke-width=".8"/><circle cx="32" cy="33" r="20.7" fill="none" stroke="#B79B68" stroke-width=".45"/>${compassTicks}<path d="M32 22L34.5 30.5L43 33L34.5 35.5L32 44L29.5 35.5L21 33L29.5 30.5Z" fill="#E2C990" opacity=".65"/><path d="M32 22L34.5 30.5L43 33L34.5 35.5L32 44L29.5 35.5L21 33L29.5 30.5Z" transform="rotate(45 32 33)" fill="#E2C990" opacity=".25"/><g fill="#EBD299" font-family="Georgia,serif" font-size="4.2" text-anchor="middle"><text x="32" y="21">N</text><text x="45" y="34.5">E</text><text x="32" y="49">S</text><text x="19" y="34.5">W</text></g><g transform="rotate(32 32 33)"><path d="M32 12L38 33L32 30L26 33Z" fill="url(#red-needle)"/><path d="M32 12V30L26 33Z" fill="#FFAD8D" opacity=".65"/><path d="M32 54L26 33L32 36L38 33Z" fill="#F8ECD0"/><path d="M32 54V36L38 33Z" fill="#AEBDD0"/></g><circle cx="32" cy="33" r="3.2" fill="url(#brass)" stroke="#75502B" stroke-width=".8"/><circle cx="31.4" cy="32.4" r="1" fill="#FFF6D5"/><path d="M14 17A25 25 0 0 1 46 12" fill="none" stroke="#FFF2C7" stroke-width=".8" opacity=".65"/>`,
     },
   ];
 })();
