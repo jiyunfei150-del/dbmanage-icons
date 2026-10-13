@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="dbmanage 浏览器标签图标的十八个正方形候选，放进真实 16px 标签栏对比，可下载整套图标文件。">
+<meta name="description" content="dbmanage 浏览器标签图标的二十四个候选，包含 Codex 几何海洋系列，可试戴真实 16px 标签图标并下载整套文件。">
 <title>dbmanage 图标候选</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -124,10 +124,10 @@ pre { margin: 10px 0 0; padding: 12px 14px; background: var(--surface); border: 
 
 
 <header class="wrap">
-  <p class="eyebrow mono">dbmanage.987ht.net · 浏览器标签图标 · 第三版</p>
+  <p class="eyebrow mono">dbmanage · 浏览器标签图标 · 第四版</p>
   <h1>dbmanage 图标候选</h1>
   <p class="lede">从 <b>BOKE 自己的世界</b>出发找故事：捕鱼、斗地主、麻将、金币；公司名「波克城市」里的波和城；
-    数据分析里本来就长得像动物的图（鱼骨图、雷达图）；再加上这个平台本身的样子。现在一共十八个，新加的九个在前面，每个缩到 16px 还是一个清楚的轮廓。</p>
+    数据分析里本来就长得像动物的图（鱼骨图、雷达图）；再加上这个平台本身的样子。现在一共二十四个，新增 Codex 的六款几何海洋系列；从大图到真实 16px，直接比较缩小后的轮廓。</p>
 </header>
 
 <section class="wrap" aria-labelledby="try-h">
@@ -143,6 +143,12 @@ pre { margin: 10px 0 0; padding: 12px 14px; background: var(--surface); border: 
       <div class="strip b"><div class="tabs" id="strip-b"></div></div>
     </div>
   </div>
+</section>
+
+<section class="wrap codex-series" id="codex" aria-labelledby="codex-h">
+  <h2 id="codex-h">Codex · 几何海洋六款</h2>
+  <p class="sub">深蓝、米白、珊瑚红与海水绿。用粗线条和留白做标记，让小图标先有清楚的轮廓，再讲故事。点击样张可试戴，支持复制 SVG 和下载整套。</p>
+  <div class="grid" id="grid-codex"></div>
 </section>
 
 <section class="wrap" aria-labelledby="cands2-h">
@@ -170,6 +176,7 @@ pre { margin: 10px 0 0; padding: 12px 14px; background: var(--surface); border: 
 </section>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="codex-icons.js"></script>
 <script>
 (function () {
   const NAVY = '#0A1463', PINK = '#EF7680', WHITE = '#FFFFFF', GOLD = '#FFC24B', MINT = '#7FD3C4';
@@ -464,7 +471,9 @@ pre { margin: 10px 0 0; padding: 12px 14px; background: var(--surface); border: 
   // 新加的排前面，编号 10–18；上一批 01–09
   ICONS.forEach((icon, i) => { icon.no = i + 1; });
   NEW.forEach((icon, i) => { icon.no = ICONS.length + i + 1; });
-  const ALL = NEW.concat(ICONS);
+  const CODEX = window.CODEX_ICONS;
+  CODEX.forEach((icon, i) => { icon.no = ICONS.length + NEW.length + i + 1; });
+  const ALL = CODEX.concat(NEW, ICONS);
   let picked = ALL.find((i) => i.id === store.get('icon.picked2')) || NEW[0];
 
   // 单独打开这一页时（不在 claude.ai 里），标签页自己的图标就换成当前试戴的那个
@@ -583,7 +592,7 @@ pre { margin: 10px 0 0; padding: 12px 14px; background: var(--surface); border: 
         picked = icon;
         store.set('icon.picked2', icon.id);
         renderStrips();
-        $('try-h').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+        window.scrollTo({ top: $('try-h').getBoundingClientRect().top + window.scrollY - 16, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
       } else if (e.target.closest('.copy')) {
         const text = svg(icon);
         try {
@@ -612,12 +621,14 @@ pre { margin: 10px 0 0; padding: 12px 14px; background: var(--surface); border: 
     });
   }
 
+  $('grid-codex').innerHTML = CODEX.map(card).join('');
   $('grid2').innerHTML = NEW.map(card).join('');
   $('grid').innerHTML = ICONS.map(card).join('');
   renderStrips();
   pixelPreviews();
   wire($('grid2'));
   wire($('grid'));
+  wire($('grid-codex'));
   // 在 claude.ai 里走查看器的保存能力（拿不到就只留「复制 SVG」）；单独打开时用浏览器自己的下载
   const browserSave = {
     save({ filename, data }) {
