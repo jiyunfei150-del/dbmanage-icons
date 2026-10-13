@@ -1,5 +1,5 @@
 /* One detailed coin drawing for the red and blue editions. */
-window.mintedCoinIcon = (theme) => {
+window.mintedCoinIcon = (theme, layout = 'bars') => {
   const stack = (x, count) => {
     let drawing = '';
     for (let i = 0; i < count; i++) {
@@ -28,7 +28,11 @@ window.mintedCoinIcon = (theme) => {
       '<linearGradient id="coin-face" x1="0" y1="0" x2=".3" y2="1"><stop stop-color="#FFF3B3"/><stop offset=".4" stop-color="#FFE18A"/><stop offset="1" stop-color="#E8B446"/></linearGradient>' +
       '<linearGradient id="coin-engraving" x1="0" y1="0" x2=".6" y2="1"><stop stop-color="#FFF0AF"/><stop offset=".4" stop-color="#EAC268"/><stop offset="1" stop-color="#D5A245"/></linearGradient>' +
       '<path id="coin-b" fill-rule="nonzero" d="M.2 1.2H3.2C5.1 1.2 6.1 2 6.1 3.1C6.1 3.9 5.6 4.4 5 4.6C6 4.9 6.5 5.6 6.5 6.4C6.5 7.8 5.3 8.4 3.3 8.4H.2V7.3H1.1V2.3H.2ZM2.5 2.4V4H3.3C4.3 4 4.7 3.7 4.7 3.2C4.7 2.7 4.3 2.4 3.3 2.4ZM2.5 5.2V7.1H3.4C4.5 7.1 5 6.8 5 6.2C5 5.5 4.5 5.2 3.4 5.2ZM1.8 0H2.5V1.2H1.8ZM3.3 0H4V1.35H3.3ZM1.8 8.4H2.5V9.6H1.8ZM3.3 8.3H4V9.6H3.3Z"/>',
-    body: '<ellipse cx="32" cy="55.8" rx="25" ry="3" fill="#000000" opacity=".2"/><ellipse cx="33" cy="56" rx="20" ry="1.5" fill="#FFCF6D" opacity=".09"/>' +
+    body: layout === 'trend'
+      ? '<path d="M10.5 11.5V32H29" fill="none" stroke="#FFF5E7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/>' +
+        '<path d="M14 26L21 19L27 22L35 12.5M29.5 12.5H35V18" fill="none" stroke="#FFF5E7" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '<ellipse cx="46" cy="56" rx="12.7" ry="2.5" fill="#3D1120" opacity=".3"/><g transform="translate(-24.4 -33.2) scale(1.6)">' + stack(44, 3) + '</g>'
+      : '<ellipse cx="32" cy="55.8" rx="25" ry="3" fill="#000000" opacity=".2"/><ellipse cx="33" cy="56" rx="20" ry="1.5" fill="#FFCF6D" opacity=".09"/>' +
       stack(15, 2) + stack(32, 4) + stack(49, 7) +
       '<path d="M49 4Q50 8.5 54 9.5Q50 10.5 49 15Q48 10.5 44 9.5Q48 8.5 49 4Z" fill="#FFF7DC"/><circle cx="49" cy="9.5" r="1.05" fill="#FFFFFF"/>' +
       '<path d="M14 3A18 18 0 0 0 3 15" fill="none" stroke="#FFFFFF" stroke-width=".55" opacity=".1"/>',

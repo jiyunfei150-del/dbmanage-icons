@@ -47,5 +47,10 @@ window.CODEX_ICONS = (() => {
       story: '三摞金币逐级升高，顶面压铸代表 BOKE 城市的双竖线浮雕 B。边缘有细刻纹，金属高光沿着堆叠起伏；红色底衬托金色，保留清楚的增长轮廓。',
       ...window.mintedCoinIcon('red'),
     },
+    {
+      id: 'cx-boke-trend', name: 'BOKE · 趋势金币', badge: '斜向构图',
+      story: '左上角是上升折线，右下角是一摞金币，两者沿对角线分布。金币顶面压铸金色浮雕 B，用品牌金币承接数据增长。',
+      ...window.mintedCoinIcon('red', 'trend'),
+    },
   ];
 })();
