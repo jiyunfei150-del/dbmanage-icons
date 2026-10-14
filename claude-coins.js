@@ -155,5 +155,25 @@ window.CLAUDE_ICONS = (() => {
       story: '只画一枚，正对着你、放得最大，币面细节最清楚；折线从它身后升起。适合想让 B 在小尺寸下也最好认的时候。',
       body: backdrop + trend('#2A0510', RED[1]) + ground(37, 59.4, 17) + standingCoin(36, 41.5, 16.5, -4, 0.97, 1.6, 3.2),
     },
+    {
+      // 04「鮟鱇提灯」的波克红版：底色取系统图标的红（#D8362B 上下各走一档），奶白的鱼拉开明暗，眼睛加一圈深红描边免得白眼睛融进白鱼身
+      id: 'cl-angler-red', name: '鮟鱇提灯 · 波克红', badge: '品牌色', glow: '#FF9A8A', bg: 'url(#bg)',
+      story: '和 04 同一条鮟鱇，底色换成波克红、鱼改成奶白色，和其他 BOKE 系统的标签是一个色系，缩到 16px 也看得清。',
+      defs: '<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E24A3D"/><stop offset="1" stop-color="#B2261E"/></linearGradient>' +
+        '<radialGradient id="glow"><stop offset="0" stop-color="#FFE08A" stop-opacity=".9"/><stop offset=".45" stop-color="#FFC24B" stop-opacity=".38"/><stop offset="1" stop-color="#FFC24B" stop-opacity="0"/></radialGradient>' +
+        '<linearGradient id="fish" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF5EF"/><stop offset="1" stop-color="#FFD6CA"/></linearGradient>' +
+        '<radialGradient id="lit" gradientUnits="userSpaceOnUse" cx="19" cy="22" r="20"><stop offset="0" stop-color="#FFD98A" stop-opacity=".45"/><stop offset="1" stop-color="#FFD98A" stop-opacity="0"/></radialGradient>',
+      body: (() => {
+        const fish = 'M13 41C13 31.5 21.5 24.5 32.5 24.5C41.5 24.5 47.5 29.5 49.8 35.6L57.5 30.2Q55.6 38 57.5 46.2L49.8 42.6C47.4 48.6 41 52 32.5 52C21.5 52 13 48.5 13 41Z';
+        return '<circle cx="47" cy="17" r="1.5" fill="none" stroke="#FFCFC6" stroke-width=".9" opacity=".75"/><circle cx="51.5" cy="12" r="1" fill="none" stroke="#FFCFC6" stroke-width=".8" opacity=".6"/>' +
+          '<circle cx="17.5" cy="15.5" r="11" fill="url(#glow)"/>' +
+          '<path d="M29 25.6C28.4 17.5 23.5 13.8 18.6 15" fill="none" stroke="#FFE2DA" stroke-width="2.2" stroke-linecap="round"/>' +
+          `<path d="${fish}" fill="url(#fish)"/><path d="${fish}" fill="url(#lit)"/>` +
+          '<path d="M13.4 42.2C17.5 44.5 22.5 45 27 43.2C22.8 47.8 16.8 48 13.9 45.3Z" fill="#7A1712"/>' +
+          '<path d="M16.6 43.5l1.1 2 .9-1.8ZM21 44.2l1 1.9 .9-2Z" fill="#FFFFFF"/>' +
+          '<circle cx="26.5" cy="34" r="3.9" fill="#FFFFFF" stroke="#7A1712" stroke-width=".9"/><circle cx="25.6" cy="33.1" r="1.9" fill="#5A0F0B"/><circle cx="26.3" cy="32.4" r=".6" fill="#FFFFFF"/>' +
+          '<circle cx="17.5" cy="15.5" r="4" fill="#FFD45C"/><circle cx="16.3" cy="14.3" r="1.2" fill="#FFFFFF"/>';
+      })(),
+    },
   ];
 })();
