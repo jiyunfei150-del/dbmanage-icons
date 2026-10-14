@@ -372,22 +372,23 @@ pre { margin: 10px 0 0; padding: 12px 14px; background: var(--surface); border: 
         '<path d="M28.2 47A5.8 5.8 0 0 0 39.8 47Z" fill="' + WHITE + '"/><path d="M28.2 47A5.8 5.8 0 0 1 39.8 47Z" fill="#FF5A66"/>' },
     { id: 'anglerfish', name: '鮟鱇提灯', glow: '#FFC24B',
       story: '深海里一条鮟鱇，头顶挑着一盏灯，灯光把它的额头照亮。数据像深海，这盏灯就是答案亮起来的那一下。',
-      defs: '<radialGradient id="bg" cx=".3" cy=".25" r=".9"><stop offset="0" stop-color="#1B2C8F"/><stop offset="1" stop-color="#050A2E"/></radialGradient>' +
+      // 浅色的鱼放在中等深度的蓝底上：明暗拉开，缩到 16px 还看得出鱼形
+      defs: '<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2C4FC2"/><stop offset="1" stop-color="#15297F"/></linearGradient>' +
         '<radialGradient id="glow"><stop offset="0" stop-color="#FFE08A" stop-opacity=".9"/><stop offset=".45" stop-color="#FFC24B" stop-opacity=".38"/><stop offset="1" stop-color="#FFC24B" stop-opacity="0"/></radialGradient>' +
-        '<linearGradient id="fish" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5C70EE"/><stop offset="1" stop-color="#3245BF"/></linearGradient>' +
+        '<linearGradient id="fish" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D3DCFF"/><stop offset="1" stop-color="#9EB1FF"/></linearGradient>' +
         // 灯光照在鱼头上：以灯为中心的暖色径向光，叠在鱼身上
-        '<radialGradient id="lit" gradientUnits="userSpaceOnUse" cx="19" cy="22" r="20"><stop offset="0" stop-color="#FFD98A" stop-opacity=".55"/><stop offset="1" stop-color="#FFD98A" stop-opacity="0"/></radialGradient>',
+        '<radialGradient id="lit" gradientUnits="userSpaceOnUse" cx="19" cy="22" r="20"><stop offset="0" stop-color="#FFD98A" stop-opacity=".5"/><stop offset="1" stop-color="#FFD98A" stop-opacity="0"/></radialGradient>',
       bg: 'url(#bg)',
       // 一笔成形的鱼身（尾鳍连在一起）+ 月牙嘴两颗小牙 + 朝灯看的眼睛 + 一根钓竿一盏灯
       body: (() => {
         const fish = 'M13 41C13 31.5 21.5 24.5 32.5 24.5C41.5 24.5 47.5 29.5 49.8 35.6L57.5 30.2Q55.6 38 57.5 46.2L49.8 42.6C47.4 48.6 41 52 32.5 52C21.5 52 13 48.5 13 41Z';
-        return '<circle cx="47" cy="17" r="1.5" fill="none" stroke="#7F93E8" stroke-width=".9" opacity=".7"/><circle cx="51.5" cy="12" r="1" fill="none" stroke="#7F93E8" stroke-width=".8" opacity=".55"/>' +
+        return '<circle cx="47" cy="17" r="1.5" fill="none" stroke="#B9C7FF" stroke-width=".9" opacity=".75"/><circle cx="51.5" cy="12" r="1" fill="none" stroke="#B9C7FF" stroke-width=".8" opacity=".6"/>' +
           '<circle cx="17.5" cy="15.5" r="11" fill="url(#glow)"/>' +
-          '<path d="M29 25.6C28.4 17.5 23.5 13.8 18.6 15" fill="none" stroke="#93A6FF" stroke-width="2.2" stroke-linecap="round"/>' +
+          '<path d="M29 25.6C28.4 17.5 23.5 13.8 18.6 15" fill="none" stroke="#C9D4FF" stroke-width="2.2" stroke-linecap="round"/>' +
           `<path d="${fish}" fill="url(#fish)"/><path d="${fish}" fill="url(#lit)"/>` +
-          '<path d="M13.4 42.2C17.5 44.5 22.5 45 27 43.2C22.8 47.8 16.8 48 13.9 45.3Z" fill="#0B1240"/>' +
+          '<path d="M13.4 42.2C17.5 44.5 22.5 45 27 43.2C22.8 47.8 16.8 48 13.9 45.3Z" fill="#18216B"/>' +
           '<path d="M16.6 43.5l1.1 2 .9-1.8ZM21 44.2l1 1.9 .9-2Z" fill="' + WHITE + '"/>' +
-          '<circle cx="26.5" cy="34" r="3.9" fill="' + WHITE + '"/><circle cx="25.6" cy="33.1" r="1.9" fill="#0B1240"/><circle cx="26.3" cy="32.4" r=".6" fill="' + WHITE + '"/>' +
+          '<circle cx="26.5" cy="34" r="3.9" fill="' + WHITE + '"/><circle cx="25.6" cy="33.1" r="1.9" fill="#121A5C"/><circle cx="26.3" cy="32.4" r=".6" fill="' + WHITE + '"/>' +
           '<circle cx="17.5" cy="15.5" r="4" fill="#FFD45C"/><circle cx="16.3" cy="14.3" r="1.2" fill="' + WHITE + '"/>';
       })() },
     { id: 'coin-bars', name: '金币柱状图', badge: '精致深蓝版',
